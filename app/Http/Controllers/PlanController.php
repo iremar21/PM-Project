@@ -103,6 +103,26 @@ class PlanController extends Controller
 
     }
 
+    public function getPlansByMe() {
+
+        $plans = Plan::orderBy('scheduledFinishDate', 'asc')
+        ->where('creator_user_id', auth()->user()->id)
+        ->paginate(10);
+
+        return view('plansByMe', compact('plans'));
+
+    }
+
+    public function getPlansManagedByMe() {
+
+        $plans = Plan::orderBy('scheduledFinishDate', 'asc')
+        ->where('manager_user_id', auth()->user()->id)
+        ->paginate(10);
+
+        return view('plansManagedByMe', compact('plans'));
+
+    }
+
     // Devuelve planes pasados (ya completados)
     public function getPastPlans() {
 

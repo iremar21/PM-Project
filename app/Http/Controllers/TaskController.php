@@ -117,50 +117,59 @@ class TaskController extends Controller
 
     }
 
+    public function getTasksByMe() {
+
+        $tasks = Task::orderBy('scheduledFinishDate', 'asc')
+        ->where('creator_user_id', auth()->id())
+        ->paginate(10);
+
+        return view ('tasksByMe', compact('tasks'));
+
+    }
+
     // Buscar tareas activas del usuario de la sesión por título o plan
-    // FALTARÍA PODER BUSCAR POR CATEGORÍA
-    // NO HACE CASO DE LOS PARÁMETROS 'COMPLETED' Y 'ASSIGNED_USER_ID'
     public function search(Request $request) {
 
-        $search = $request->search;
+        $search = $request->input('search', '');
 
         $tasks = Task::where('assigned_user_id', auth()->id())
-        ->where('completed', false)
-        ->where(function($query) use ($search) {
-
-            $query->where('title','like',"%$search%")
-            ->orWhere('description','like',"%$search%");
-
-            })
-            ->orWhereHas('plan',function($query) use($search) {
-                $query->where('title','like',"%$search%");
+            ->where('completed', false)
+            ->where(function($query) use ($search) {
+                $query->where(function($q) use ($search) {
+                    $q->where('title', 'like', "%$search%")
+                      ->orWhere('description', 'like', "%$search%");
+                })
+                ->orWhereHas('plan', function($q) use ($search) {
+                    $q->where('title', 'like', "%$search%");
+                });
             })
             ->paginate(10);
-
+    
+        $tasks->appends(['search' => $search]);
+    
         return view('dashboard', compact('tasks', 'search'));
 
     }
 
     // Buscar tareas completadas del usuario de la sesión por título o plan
-    // FALTARÍA PODER BUSCAR POR CATEGORÍA
-    // NO HACE CASO DE LOS PARÁMETROS 'CCOMPLETED' Y 'ASSIGNED_USER_ID'
     public function searchPastTasks(Request $request) {
 
-        $search = $request->search;
-
+        $search = $request->input('search', '');
         $tasks = Task::where('completed', true)
-        ->where('assigned_user_id', auth()->id())
-        ->where(function($query) use ($search) {
-
-            $query->where('title','like',"%$search%")
-            ->orWhere('description','like',"%$search%");
-
-            })
-            ->orWhereHas('plan',function($query) use($search) {
-                $query->where('title','like',"%$search%");
+            ->where('assigned_user_id', auth()->id())
+            ->where(function($query) use ($search) {
+                $query->where(function($q) use ($search) {
+                    $q->where('title', 'like', "%$search%")
+                      ->orWhere('description', 'like', "%$search%");
+                })
+                ->orWhereHas('plan', function($q) use ($search) {
+                    $q->where('title', 'like', "%$search%");
+                });
             })
             ->paginate(10);
-
+    
+        $tasks->appends(['search' => $search]);
+    
         return view('tasks/past', compact('tasks', 'search'));
 
     }

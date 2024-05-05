@@ -19,6 +19,9 @@ Route::get('/', function () {
 Route::middleware('auth')->group(function () {
     // Dashboard
     Route::get('/dashboard', [TaskController::class, 'index'])->name('dashboard');
+    Route::get('/dashboard/tasksByMe', [TaskController::class, 'getTasksByMe'])->name('dashboard.tasksByMe');
+    Route::get('/dashboard/plansByMe', [PlanController::class, 'getPlansByMe'])->name('dashboard.plansByMe');
+    Route::get('/dashboard/plansManagedByMe', [PlanController::class, 'getPlansManagedByMe'])->name('dashboard.plansManagedByMe');
     Route::get('/dashboard/search', [TaskController::class, 'search'])->name('dashboard.search');
 
     // Perfiles de usuarios

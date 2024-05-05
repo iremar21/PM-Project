@@ -24,15 +24,23 @@
             <div class="px-6 py-4 grid gap-3 md:flex md:justify-between md:items-center border-b border-gray-200">
               <div>
                 <h2 class="text-xl font-semibold text-gray-800">
-                  Mi historial de tareas completadas
+                  Tareas creadas por mí
                 </h2>
               </div>
             </div>
             <!-- End Header -->
 
+            <!-- Navigation Links -->
+            <div class="flex justify-center px-6 py-4 space-x-4">
+              <a href="{{route('dashboard')}}" class="py-3 px-4 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-white dark:hover:bg-neutral-800">Mis tareas activas</a>
+              <a href="{{route('dashboard.plansByMe')}}" class="py-3 px-4 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-white dark:hover:bg-neutral-800">Planes creados por mí</a>
+              <a href="{{route('dashboard.plansManagedByMe')}}" class="py-3 px-4 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-white dark:hover:bg-neutral-800">Planes dirigidos por mí</a>
+            </div>
+            <!-- End Navigation Links -->
+
             <!-- Search Bar -->
             <div class="mb-2 mt-2 min-w-full">
-              <form class="max-w-md mx-auto" method="GET" action="{{route('tasks.past.search')}}">   
+              <form class="max-w-md mx-auto" method="GET" action="{{route('dashboard.search')}}">   
                 <label for="default-search" class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
                 <div class="relative">
                     <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
@@ -82,6 +90,9 @@
                       </span>
                     </div>
                   </th>
+  
+                  <th scope="col" class="px-6 py-3 text-end">
+                  </th>
                 </tr>
               </thead>
   
@@ -105,22 +116,41 @@
                             </a>
                         </td>
                         <td class="size-px whitespace-nowrap">
-                            <a class="block relative z-10" href="#">
-                            <div class="px-6 py-2">
-                                <span class="inline-flex items-center gap-1.5 py-1 px-2 rounded-lg text-xs font-medium bg-gray-100 text-gray-800">
-                                {{Carbon\Carbon::parse($task->finishDate)->format('d-m-Y')}}
-                                </span>
-                            </div>
-                            </a>
+                            <span class="inline-flex items-center gap-1.5 py-1 px-2 rounded-lg text-xs font-medium bg-gray-100 text-gray-800">
+                            <p>{{Carbon\Carbon::parse($task->scheduledFinishDate)->format('d-m-Y')}}</p>
+                            </span>
+                        </td>
+
+                        <td class="size-px whitespace-nowrap">
+                          <a class="block relative z-10" href="{{route('plans.show', $task->plan)}}">
+                          <div class="px-6 py-2">
+                              <span class="inline-flex items-center gap-1.5 py-1 px-2 rounded-lg text-xs uppercase font-medium bg-gray-100 text-gray-800">
+                              {{$task->plan->title}}
+                              </span>
+                          </div>
+                          </a>
                         </td>
                         <td class="size-px whitespace-nowrap">
-                            <a class="block relative z-10" href="{{route('plans.show', $task->plan)}}">
+                          <span class="block relative z-10">
                             <div class="px-6 py-2">
-                                <span class="inline-flex items-center uppercase gap-1.5 py-1 px-2 rounded-lg text-xs font-medium bg-gray-100 text-gray-800">
-                                {{$task->plan->title}}
-                                </span>
-                            </div>
-                            </a>
+                              @if ($task->completed)
+                                  <span class="inline-flex items-center gap-1.5 py-1 px-2 rounded-lg text-xs font-medium bg-blue-300 text-gray-800">
+                                      Completada
+                                  </span>
+                              @else
+                                  @if ($task->scheduledFinishDate > Carbon\Carbon::today())
+                                      <span class="inline-flex items-center gap-1.5 py-1 px-2 rounded-lg text-xs font-medium bg-green-300 text-gray-800">
+                                          En plazo
+                                      </span>
+                                  @else
+                                      <span class="inline-flex items-center gap-1.5 py-1 px-2 rounded-lg text-xs font-medium bg-red-300 text-gray-800">
+                                          Atrasada
+                                      </span>
+                                  @endif
+                              @endif
+                          </div>
+                          
+                        </span>
                         </td>
                     </tr>
                 @endforeach
@@ -132,11 +162,7 @@
             <div class="px-6 py-4 grid gap-3 md:flex md:justify-between md:items-center border-t border-gray-200">
               <div>
                 <div class="inline-flex gap-x-2">
-                  @if ($tasks->hasPages())
-                    <div class="mt-4">
-                        {{ $tasks->links() }}
-                    </div>
-                  @endif
+                  {{$tasks->links()}}
                 </div>
               </div>
             </div>
