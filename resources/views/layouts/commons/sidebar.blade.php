@@ -52,7 +52,7 @@
         <li class="hs-accordion" id="projects-accordion">
           <a class="{{Route::is('plans') ? 'inline-flex items-center gap-x-1.5 py-1.5 px-3 rounded-full bg-gray-100 text-gray-500 dark:bg-white/10' : ''}} hs-accordion-toggle w-full text-start flex items-center gap-x-3.5 py-2 px-2.5 hs-accordion-active:text-blue-600 hs-accordion-active:hover:bg-transparent text-sm text-neutral-700 rounded-lg hover:bg-gray-100" href="{{route('plans')}}">
             <svg class="flex-shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="14" x="2" y="7" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
-            Planes de acción
+            Planes en curso
           </a>
         </li>
   
