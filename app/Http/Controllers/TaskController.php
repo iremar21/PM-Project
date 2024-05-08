@@ -174,6 +174,28 @@ class TaskController extends Controller
 
     }
 
+    // Buscar tareas creadas por el usuario de la sesión por título o plan
+    public function searchTasksByMe(Request $request) {
+
+        $search = $request->input('search', '');
+        $tasks = Task::where('creator_user_id', auth()->id())
+            ->where(function($query) use ($search) {
+                $query->where(function($q) use ($search) {
+                    $q->where('title', 'like', "%$search%")
+                        ->orWhere('description', 'like', "%$search%");
+                })
+                ->orWhereHas('plan', function($q) use ($search) {
+                    $q->where('title', 'like', "%$search%");
+                });
+            })
+            ->paginate(10);
+
+        $tasks->appends(['search' => $search]);
+
+        return view('tasksByMe', compact('tasks', 'search'));
+        
+    }
+
     // Marca una tarea como completada
     // únicamente podrá hacerlo el usuario al que ha sido asignada
     public function markAsCompleted(Task $task) {

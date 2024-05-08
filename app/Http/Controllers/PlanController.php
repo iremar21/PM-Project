@@ -178,6 +178,44 @@ class PlanController extends Controller
 
     }
 
+    // Busca planes creados por el usuario de la sesión por título, descripción o categoría
+    public function searchPlansByMe(Request $request) {
+
+        $search = $request->search;
+    
+        $plans = Plan::where('creator_user_id', auth()->id())
+                     ->where(function($query) use ($search) {
+                         $query->where('title', 'like', "%$search%")
+                               ->orWhere('description', 'like', "%$search%")
+                               ->orWhereHas('category', function($query) use ($search) {
+                                   $query->where('name', 'like', "%$search%");
+                               });
+                     })
+                     ->paginate(10);
+    
+        return view('plansByMe', compact('plans', 'search'));
+
+    }
+
+    // Busca planes dirigidos por el usuario de la sesión por título, descripción o categoría
+    public function searchPlansManagedByMe(Request $request) {
+
+        $search = $request->search;
+    
+        $plans = Plan::where('manager_user_id', auth()->id())
+                     ->where(function($query) use ($search) {
+                         $query->where('title', 'like', "%$search%")
+                               ->orWhere('description', 'like', "%$search%")
+                               ->orWhereHas('category', function($query) use ($search) {
+                                   $query->where('name', 'like', "%$search%");
+                               });
+                     })
+                     ->paginate(10);
+    
+        return view('plansManagedByMe', compact('plans', 'search'));
+        
+    }
+
     // Borra el plan seleccionado
     // únicamente podrá hacerlo el usuario que haya creado el plan
     public function destroy(Plan $plan) {
