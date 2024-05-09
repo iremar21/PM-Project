@@ -103,6 +103,7 @@ class PlanController extends Controller
 
     }
 
+    // Devuelve los planes creados por el usuario de la sesión
     public function getPlansByMe() {
 
         $plans = Plan::orderBy('scheduledFinishDate', 'asc')
@@ -113,6 +114,7 @@ class PlanController extends Controller
 
     }
 
+    // Devuelve los planes dirigidos por el usuario de la sesión
     public function getPlansManagedByMe() {
 
         $plans = Plan::orderBy('scheduledFinishDate', 'asc')
@@ -220,7 +222,7 @@ class PlanController extends Controller
     // únicamente podrá hacerlo el usuario que haya creado el plan
     public function destroy(Plan $plan) {
 
-        if ($plan->user_id != auth()->user()->id) {
+        if ($plan->creator->id != auth()->user()->id) {
             return redirect()->route('plans.show', $plan);
         }
 

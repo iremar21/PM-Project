@@ -65,12 +65,14 @@
                   <h5 class="mb-3 hover:text-gray-600 text-lg font-bold text-gray-800">
                       Tareas dentro de este plan:
                   </h5>
+                  @if($plan->creator->id == auth()->user()->id || $plan->manager->id == auth()->user()->id)
                   <div>
                     <a href="{{route('tasks.create', $plan)}}" class="mb-4 py-3 px-4 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none">
                       <svg class="flex-shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5v14"/></svg>
                       Añadir tarea
                     </a>
                   </div>
+                  @endif
                   @if (count($plan->tasks) > 0)
                     @foreach ($plan->tasks as $task)
                     <li class="mb-4 text-sm font-semibold text-blue-600 hover:underline list-none">

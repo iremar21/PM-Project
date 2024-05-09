@@ -22,6 +22,7 @@
                 <div>
                     <label for="assigned_user_id" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Asignar a:</label>
                     <select id="assigned_user_id" name="assigned_user_id" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5">
+                        <option value="" disabled selected>Seleccionar usuario</option>
                         @foreach ($users as $user)
                             <option value="{{ $user->id }}">{{ $user->name }}</option>
                         @endforeach

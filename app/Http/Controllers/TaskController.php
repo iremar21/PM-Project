@@ -34,7 +34,12 @@ class TaskController extends Controller
     }
 
     // Devuelve la vista con el formulario para crear y asignar una nueva tarea al plan seleccionado
+    // Únicamente puedrá crear tareas dentro de un plan el creador o el responsable de éste
     public function create(Plan $plan) {
+
+        if ($plan->creator->id != auth()->user()->id && $plan->manager->id != auth()->user()->id) {
+            return redirect()->route('plans.show', $plan);
+        }
 
         $users = User::all();
 
@@ -44,6 +49,10 @@ class TaskController extends Controller
 
     // Guarda la nueva tarea, asignándosela al plan seleccionado
     public function store(Plan $plan, StoreTaskRequest $request) {
+
+        if ($plan->creator->id != auth()->user()->id && $plan->manager->id != auth()->user()->id) {
+            return redirect()->route('plans.show', $plan);
+        }
 
         $task = Task::create([
             'title' => $request->title,
@@ -117,6 +126,7 @@ class TaskController extends Controller
 
     }
 
+    // Devuelve las tareas creadas por el usuario de la sesión
     public function getTasksByMe() {
 
         $tasks = Task::orderBy('scheduledFinishDate', 'asc')
