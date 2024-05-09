@@ -165,6 +165,7 @@ class TaskController extends Controller
     public function searchPastTasks(Request $request) {
 
         $search = $request->input('search', '');
+
         $tasks = Task::where('completed', true)
             ->where('assigned_user_id', auth()->id())
             ->where(function($query) use ($search) {
@@ -188,6 +189,7 @@ class TaskController extends Controller
     public function searchTasksByMe(Request $request) {
 
         $search = $request->input('search', '');
+        
         $tasks = Task::where('creator_user_id', auth()->id())
             ->where(function($query) use ($search) {
                 $query->where(function($q) use ($search) {

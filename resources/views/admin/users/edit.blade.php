@@ -10,7 +10,7 @@
 </div>
 <form method="POST" action="{{ route('users.update', $user) }}">
     @csrf
-    @method('PUT')
+    @method('PATCH')
 
     <!-- Name -->
     <div>

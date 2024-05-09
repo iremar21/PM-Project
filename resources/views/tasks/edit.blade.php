@@ -11,7 +11,7 @@
         <h2 class="mb-4 text-xl font-bold text-gray-900 dark:text-white">Editar tarea del plan de acción "{{$task->plan->title}}"</h2>
         <form action="{{ route('tasks.update', $task) }}" method="POST">
             @csrf
-            @method('PUT')
+            @method('PATCH')
             <div class="grid gap-4 sm:grid-cols-2 sm:gap-6">
                 <div>
                     <label for="title" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Título</label>

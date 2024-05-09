@@ -2,25 +2,25 @@
 
 @section('content')
 
-<section class="bg-white dark:bg-gray-900">
+<section class="bg-white">
     <div class="mx-auto max-w-2xl lg:py-16">
         <a class="mb-4 inline-flex items-center gap-x-1.5 text-sm text-gray-600 decoration-2 hover:underline" href="{{route('plans')}}">
             <svg class="flex-shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
             Volver
           </a>
-        <h2 class="mb-4 text-xl font-bold text-gray-900 dark:text-white">Crear nuevo plan de acción</h2>
+        <h2 class="mb-4 text-xl font-bold text-gray-900">Crear nuevo plan de acción</h2>
         <form action="{{ route('plans.store') }}" method="POST">
             @csrf
             <div class="grid gap-4 sm:grid-cols-2 sm:gap-6">
                 <div class="sm:col-span-2">
-                    <label for="title" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Título</label>
+                    <label for="title" class="block mb-2 text-sm font-medium text-gray-900">Título</label>
                     <input type="text" name="title" id="title" value="{{ old('title') }}" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5" required>
                     @error('title')
                         <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
                     @enderror
                 </div>
                 <div>
-                    <label for="category" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Categoría</label>
+                    <label for="category" class="block mb-2 text-sm font-medium text-gray-900">Categoría</label>
                     <select id="category" name="category_id" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5">
                         <option value="" disabled selected>Seleccionar categoría</option>
                         @foreach ($categories as $category)
@@ -32,7 +32,7 @@
                     @enderror
                 </div>
                 <div>
-                    <label for="manager_user_id" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Asignar responsable</label>
+                    <label for="manager_user_id" class="block mb-2 text-sm font-medium text-gray-900">Asignar responsable</label>
                     <select id="manager_user_id" name="manager_user_id" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5">
                         <option value="" disabled selected>Seleccionar usuario</option>
                         @foreach ($users as $user)

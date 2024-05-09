@@ -11,7 +11,7 @@
         <h2 class="mb-4 text-xl font-bold text-gray-900 dark:text-white">Editar plan de acción</h2>
         <form action="{{ route('plans.update', $plan) }}" method="POST">
             @csrf
-            @method('PUT')
+            @method('PATCH')
             <div class="grid gap-4 sm:grid-cols-2 sm:gap-6">
                 <div class="sm:col-span-2">
                     <label for="title" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Título</label>

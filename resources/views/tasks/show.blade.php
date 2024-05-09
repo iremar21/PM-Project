@@ -108,20 +108,20 @@
                 </h5>
                 @foreach ($task->plan->tasks as $relatedTask)
                 <li class="mb-4 text-sm font-semibold text-blue-600 hover:underline list-none">
-                  <div class="flex flex-col bg-white border shadow-sm rounded-xl p-4 md:p-5 dark:bg-neutral-900 dark:border-neutral-700 dark:shadow-neutral-700/70">
-                    <h3 class="text-lg font-bold text-gray-800 dark:text-white">
+                  <div class="flex flex-col bg-white border shadow-sm rounded-xl p-4 md:p-5">
+                    <h3 class="text-lg font-bold text-gray-800">
                       <a href="{{route('tasks.show', $relatedTask->id)}}">
                         {{$relatedTask->title}}
                       </a>
                     </h3>
-                    <p class="mt-1 text-xs font-medium uppercase text-gray-500 dark:text-neutral-500">
+                    <p class="mt-1 text-xs font-medium uppercase text-gray-500">
                       Asignada a {{$relatedTask->assignee->name}}
                     </p>
-                    <p class="mt-2 text-gray-500 dark:text-neutral-400">
+                    <p class="mt-2 text-gray-500">
                       @if ($relatedTask->completed)
-                        <span class="inline-flex items-center gap-x-1.5 py-1.5 px-3 rounded-full text-xs font-medium bg-teal-100 text-teal-800 dark:bg-teal-800/30 dark:text-teal-500">Completada</span>
+                        <span class="inline-flex items-center gap-x-1.5 py-1.5 px-3 rounded-full text-xs font-medium bg-teal-100 text-teal-800">Completada</span>
                       @else
-                        <span class="inline-flex items-center gap-x-1.5 py-1.5 px-3 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800 dark:bg-yellow-800/30 dark:text-yellow-500">Pendiente</span>
+                        <span class="inline-flex items-center gap-x-1.5 py-1.5 px-3 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800">Pendiente</span>
                       @endif
                     </p>
                   </div>

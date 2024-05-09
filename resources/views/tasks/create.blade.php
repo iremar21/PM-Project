@@ -2,25 +2,25 @@
 
 @section('content')
 
-<section class="bg-white dark:bg-gray-900">
+<section class="bg-white">
     <div class="mx-auto max-w-2xl lg:py-16">
         <a class="mb-4 inline-flex items-center gap-x-1.5 text-sm text-gray-600 decoration-2 hover:underline" href="{{route('plans')}}">
             <svg class="flex-shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
             Volver
           </a>
-        <h2 class="mb-4 text-xl font-bold text-gray-900 dark:text-white">Nueva tarea para el plan de acción "{{$plan->title}}"</h2>
+        <h2 class="mb-4 text-xl font-bold text-gray-900">Nueva tarea para el plan de acción "{{$plan->title}}"</h2>
         <form action="{{ route('tasks.store', $plan) }}" method="POST">
             @csrf
             <div class="grid gap-4 sm:grid-cols-2 sm:gap-6">
                 <div>
-                    <label for="title" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Título</label>
+                    <label for="title" class="block mb-2 text-sm font-medium text-gray-900">Título</label>
                     <input type="text" name="title" id="title" value="{{ old('title') }}" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5" required>
                     @error('title')
                         <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
                     @enderror
                 </div>
                 <div>
-                    <label for="assigned_user_id" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Asignar a:</label>
+                    <label for="assigned_user_id" class="block mb-2 text-sm font-medium text-gray-900">Asignar a:</label>
                     <select id="assigned_user_id" name="assigned_user_id" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5">
                         <option value="" disabled selected>Seleccionar usuario</option>
                         @foreach ($users as $user)
