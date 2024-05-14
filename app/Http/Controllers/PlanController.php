@@ -155,6 +155,8 @@ class PlanController extends Controller
  
         })->paginate(10);
 
+        $plans->appends(['search' => $search]);
+
         return view('plans/activePlans', compact('plans', 'search'));
 
     }
@@ -176,6 +178,8 @@ class PlanController extends Controller
 
         })->paginate(10);
 
+        $plans->appends(['search' => $search]);
+
         return view('plans/past', compact('plans', 'search'));
 
     }
@@ -194,6 +198,8 @@ class PlanController extends Controller
                                });
                      })
                      ->paginate(10);
+
+        $plans->appends(['search' => $search]);
     
         return view('plansByMe', compact('plans', 'search'));
 
@@ -213,6 +219,8 @@ class PlanController extends Controller
                                });
                      })
                      ->paginate(10);
+
+        $plans->appends(['search' => $search]);
     
         return view('plansManagedByMe', compact('plans', 'search'));
         
