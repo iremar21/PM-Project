@@ -6,7 +6,7 @@
         <svg class="flex-shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
         Volver
       </a>
-    <h2 class="mb-4 text-xl font-bold text-gray-900 dark:text-white">Editar usuario</h2>
+    <h2 class="mb-4 text-xl font-bold text-gray-900">Editar usuario</h2>
 </div>
 <form method="POST" action="{{ route('users.update', $user) }}">
     @csrf
@@ -50,8 +50,8 @@
 
     <!-- Role -->
     <div class="mt-4">
-        <label for="role" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Asignar Rol</label>
-        <select id="role" name="roles[]" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600">
+        <label for="role" class="block mb-2 text-sm font-medium text-gray-900">Asignar Rol</label>
+        <select id="role" name="roles[]" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5">
             @foreach ($roles as $role)
                 <option value="{{ $role->id }}" {{$user->roles->contains($role->id) ? 'selected' : ''}}>{{ $role->name }}</option>
             @endforeach

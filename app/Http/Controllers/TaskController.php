@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreTaskRequest;
+use App\Http\Requests\UpdateTaskRequest;
 use App\Models\Plan;
 use App\Models\Task;
 use App\Models\User;
@@ -100,18 +101,11 @@ class TaskController extends Controller
     }
 
     // Actualiza la información de la tarea
-    public function update(Request $request, Task $task) {
+    public function update(UpdateTaskRequest $request, Task $task) {
 
         if ($task->creator_user_id != auth()->user()->id) {
             return redirect()->route('tasks.show', $task);
         }
-
-        $request->validate([
-            'title' => 'required|min:3|max:255',
-            'description' => 'required|min:10',
-            'assigned_user_id' => 'required',
-            'scheduledFinishDate' => 'required',
-        ]);
 
         $task->title = $request->title;
         $task->description = $request->description;

@@ -13,7 +13,7 @@
               Volver al dashboard
             </a>
             <div class="flex justify-between">
-              <h3 class="mt-1 text-base font-medium uppercase text-gray-500 dark:text-neutral-500">Tarea</h3>
+              <h3 class="mt-1 text-base font-medium uppercase text-gray-500">Tarea</h3>
               <div class="flex justify-end space-x-8">
                 @if ($task->creator_user_id == auth()->user()->id)
                 <a href="{{route('tasks.edit', $task)}}" class="text-blue-600">
