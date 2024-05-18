@@ -36,8 +36,9 @@
     lg:block lg:translate-x-0 lg:end-auto lg:bottom-0
    
    ">
-    <div class="flex flex-col pt-6 gap-y-4 gap-x-0 mt-5 sm:flex-row sm:items-center sm:justify-start sm:gap-y-0 sm:gap-x-7 sm:mt-0 sm:ps-7">
-      <p class="flex-none text-xl font-semibold" aria-label="Brand">The Plan Manager</p>
+    <div class="flex items-center gap-4 mt-5 ml-4">
+      <x-application-logo />
+      <p class="text-xl font-semibold" aria-label="Brand">The Plan Manager</p>
     </div>
   
     <nav class="hs-accordion-group p-6 w-full flex flex-col flex-wrap" data-hs-accordion-always-open>

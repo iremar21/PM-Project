@@ -1,4 +1,12 @@
 <x-guest-layout>
+    <!-- Logo and Application Name -->
+    <div class="flex flex-col items-center mt-8">
+        <div class="flex items-center gap-4 mb-6">
+            <x-application-logo />
+            <p class="text-2xl font-bold uppercase" aria-label="Brand">The Plan Manager</p>
+        </div>
+    </div>
+
     <!-- Session Status -->
     <x-auth-session-status class="mb-4" :status="session('status')" />
 
@@ -25,7 +33,6 @@
         </div>
 
         <div class="flex items-center justify-end mt-4">
-
             <x-primary-button class="ms-3">
                 {{ __('Iniciar Sesión') }}
             </x-primary-button>
