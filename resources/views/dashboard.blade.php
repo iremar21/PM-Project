@@ -15,6 +15,10 @@
     </span>
   </div>
   @endif
+  <div class="my-8">
+    <h1 class="text-3xl font-bold mb-4">Bienvenid@ a tu Dashboard</h1>
+    <p class="text-lg text-gray-700">Aquí puedes administrar tus planes y tareas.</p>
+  </div>
     <!-- Card -->
     <div class="flex flex-col">
       <div class="-m-1.5 overflow-x-auto">

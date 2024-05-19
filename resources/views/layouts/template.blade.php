@@ -8,16 +8,16 @@
     <!-- favicon -->
     <!-- estilos -->
 </head>
-<body>
+<body class="flex flex-col min-h-screen">
     <!-- header -->
-    <!-- nav -->
-
     @include('layouts.commons.header')
     
-    @include('layouts.commons.sidebar')
+    <!-- Main content wrapper -->
+    <div class="flex flex-1">
+        @include('layouts.commons.sidebar')
 
-    <div class="w-full lg:ps-64">
-        <div class="p-4 sm:p-6 space-y-4 sm:space-y-6">
+        <!-- Page content -->
+        <div class="flex-1 p-4 sm:p-6 space-y-4 sm:space-y-6">
             @yield('content')
         </div>
     </div>
