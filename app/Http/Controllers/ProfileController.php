@@ -36,26 +36,4 @@ class ProfileController extends Controller
 
         return Redirect::route('profile.edit')->with('status', 'profile-updated');
     }
-
-    /**
-     * Método proporcionado por el paquete para que un usuario pueda eliminar su propio perfil.
-     * En este caso no lo vamos a utilizar.
-     */
-    // public function destroy(Request $request): RedirectResponse
-    // {
-    //     $request->validateWithBag('userDeletion', [
-    //         'password' => ['required', 'current_password'],
-    //     ]);
-
-    //     $user = $request->user();
-
-    //     Auth::logout();
-
-    //     $user->delete();
-
-    //     $request->session()->invalidate();
-    //     $request->session()->regenerateToken();
-
-    //     return Redirect::to('/');
-    // }
 }
