@@ -78,7 +78,7 @@
                     <li class="mb-4 text-sm font-semibold text-blue-600 hover:underline list-none">
                       <div class="flex flex-col bg-white border shadow-sm rounded-xl p-4 md:p-5">
                         <h3 class="text-lg font-bold text-gray-800">
-                          <a href="{{route('tasks.show', $task->id)}}">
+                          <a href="{{route('tasks.show', $task)}}">
                             {{$task->title}}
                           </a>
                         </h3>

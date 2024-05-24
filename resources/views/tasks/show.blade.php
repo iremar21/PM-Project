@@ -86,7 +86,7 @@
 
           <div class="group flex items-center gap-x-3 border-b border-gray-200 pb-8 mb-8">
   
-            <a class="group grow block" href="{{route('plans.show', $task->plan->id)}}">
+            <a class="group grow block" href="{{route('plans.show', $task->plan)}}">
                 <h5 class="group-hover:text-gray-600 text-sm font-semibold text-gray-800">
                     Tarea del plan de acción
                 </h5>
@@ -110,7 +110,7 @@
                 <li class="mb-4 text-sm font-semibold text-blue-600 hover:underline list-none">
                   <div class="flex flex-col bg-white border shadow-sm rounded-xl p-4 md:p-5">
                     <h3 class="text-lg font-bold text-gray-800">
-                      <a href="{{route('tasks.show', $relatedTask->id)}}">
+                      <a href="{{route('tasks.show', $relatedTask)}}">
                         {{$relatedTask->title}}
                       </a>
                     </h3>
