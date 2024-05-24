@@ -7,6 +7,7 @@ use App\Models\Category;
 use App\Models\Plan;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class PlanController extends Controller
 {
@@ -51,6 +52,7 @@ class PlanController extends Controller
             'manager_user_id' => $request->manager_user_id,
             'scheduledFinishDate' => $request->scheduledFinishDate,
             'creationDate' => now(),
+            'slug' => Str::slug($request->title),
         ]);
 
         $plan->save();
@@ -87,6 +89,7 @@ class PlanController extends Controller
             'category_id' => 'required',
             'manager_user_id' => 'required',
             'scheduledFinishDate' => 'required',
+            'slug' => 'unique'
         ]);
 
         $plan->title = $request->title;
@@ -94,6 +97,7 @@ class PlanController extends Controller
         $plan->category_id = $request->category_id;
         $plan->manager_user_id = $request->manager_user_id;
         $plan->scheduledFinishDate = $request->scheduledFinishDate;
+        $plan->slug = Str::slug($request->title);
 
         $user = auth()->user();
 

@@ -8,6 +8,7 @@ use App\Models\Plan;
 use App\Models\Task;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class TaskController extends Controller
 {
@@ -62,7 +63,8 @@ class TaskController extends Controller
             'assigned_user_id' => $request->assigned_user_id,
             'scheduledFinishDate' => $request->scheduledFinishDate,
             'creator_user_id' => auth()->id(),
-            'completed' => false
+            'completed' => false,
+            'slug' => Str::slug($request->title)
         ]);
 
         $task->save();
@@ -111,6 +113,7 @@ class TaskController extends Controller
         $task->description = $request->description;
         $task->assigned_user_id = $request->assigned_user_id;
         $task->scheduledFinishDate = $request->scheduledFinishDate;
+        $task->slug = Str::slug($request->title);
 
         $user = auth()->user();
 

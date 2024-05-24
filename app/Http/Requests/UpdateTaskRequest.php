@@ -27,6 +27,7 @@ class UpdateTaskRequest extends FormRequest
             'description' => 'nullable|string|min:10',
             'assigned_user_id' => 'required|exists:users,id',
             'scheduledFinishDate' => 'required|date|before_or_equal:' . $task->plan->scheduledFinishDate,
+            'slug' => 'unique'
         ];
     }
 }

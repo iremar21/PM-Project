@@ -22,6 +22,7 @@ return new class extends Migration
             $table->dateTime('finishDate')->nullable();
             $table->dateTime('scheduledFinishDate');
             $table->boolean('completed');
+            $table->string('slug')->unique();
 
             // Foreign keys
 

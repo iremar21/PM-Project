@@ -19,7 +19,8 @@ class Plan extends Model
         'manager_user_id',
         'creationDate',
         'finishDate',
-        'scheduledFinishDate'
+        'scheduledFinishDate',
+        'slug'
     ];
 
     // Relación uno a muchos inversa
@@ -40,5 +41,10 @@ class Plan extends Model
     // Relación uno a muchos
     public function tasks() {
         return $this->hasMany(Task::class);
+    }
+
+    public function getRouteKeyName()
+    {
+        return 'slug';
     }
 }

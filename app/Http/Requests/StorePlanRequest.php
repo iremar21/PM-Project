@@ -26,7 +26,8 @@ class StorePlanRequest extends FormRequest
             'description' => 'required|min:10',
             'category_id' => 'required',
             'manager_user_id' => 'required',
-            'scheduledFinishDate' => 'required'
+            'scheduledFinishDate' => 'required',
+            'slug' => 'unique'
         ];
     }
 }

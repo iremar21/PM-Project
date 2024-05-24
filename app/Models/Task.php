@@ -17,7 +17,8 @@ class Task extends Model
         'plan_id',
         'finishDate',
         'scheduledFinishDate',
-        'completed'
+        'completed',
+        'slug'
     ];
 
     // Relación uno a muchos inversa
@@ -33,5 +34,10 @@ class Task extends Model
     // Relación uno a muchos inversa
     public function plan() {
         return $this->belongsTo(Plan::class);
+    }
+
+    public function getRouteKeyName()
+    {
+        return 'slug';
     }
 }

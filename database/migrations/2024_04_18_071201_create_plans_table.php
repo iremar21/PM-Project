@@ -24,6 +24,7 @@ return new class extends Migration
             $table->dateTime('creationDate');
             $table->dateTime('finishDate')->nullable();
             $table->dateTime('scheduledFinishDate');
+            $table->string('slug')->unique();
 
             // Foreign keys
             $table->foreign('category_id')->nullable()
