@@ -101,16 +101,16 @@
           </div>
   
           <div class="space-y-6">
-            <a class="group flex items-center gap-x-6" href="#">
+            <a class="group flex items-center gap-x-6">
               <div class="grow">
-                <h5 class="mb-3 hover:text-gray-600 text-lg font-bold text-gray-800">
+                <h5 class="mb-3 text-lg font-bold text-gray-800">
                     Tareas dentro de este plan:
                 </h5>
                 @foreach ($task->plan->tasks as $relatedTask)
-                <li class="mb-4 text-sm font-semibold text-blue-600 hover:underline list-none">
+                <li class="mb-4 text-sm font-semibold text-blue-600 list-none">
                   <div class="flex flex-col bg-white border shadow-sm rounded-xl p-4 md:p-5">
                     <h3 class="text-lg font-bold text-gray-800">
-                      <a href="{{route('tasks.show', $relatedTask)}}">
+                      <a class="hover:text-gray-600 hover:underline" href="{{route('tasks.show', $relatedTask)}}">
                         {{$relatedTask->title}}
                       </a>
                     </h3>

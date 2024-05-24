@@ -60,9 +60,9 @@
     
             <div class="grid lg:flex lg:justify-between lg:items-center gap-y-5 lg:gap-y-0">
   
-              <a class="group flex items-center gap-x-6" href="#">
+              <a class="group flex items-center gap-x-6">
                 <div class="grow">
-                  <h5 class="mb-3 hover:text-gray-600 text-lg font-bold text-gray-800">
+                  <h5 class="mb-3 text-lg font-bold text-gray-800">
                       Tareas dentro de este plan:
                   </h5>
                   @if($plan->creator->id == auth()->user()->id || $plan->manager->id == auth()->user()->id)
@@ -75,10 +75,10 @@
                   @endif
                   @if (count($plan->tasks) > 0)
                     @foreach ($plan->tasks as $task)
-                    <li class="mb-4 text-sm font-semibold text-blue-600 hover:underline list-none">
+                    <li class="mb-4 text-sm font-semibold text-blue-600 list-none">
                       <div class="flex flex-col bg-white border shadow-sm rounded-xl p-4 md:p-5">
                         <h3 class="text-lg font-bold text-gray-800">
-                          <a href="{{route('tasks.show', $task)}}">
+                          <a class="hover:underline hover:text-gray-600" href="{{route('tasks.show', $task)}}">
                             {{$task->title}}
                           </a>
                         </h3>
