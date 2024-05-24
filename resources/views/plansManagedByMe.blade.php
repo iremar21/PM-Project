@@ -117,7 +117,7 @@
                             </a>
                         </td>
                         <td class="size-px whitespace-nowrap">
-                            <a class="block relative z-10" href="#">
+                            <a class="block relative z-10">
                             <div class="px-6 py-2">
                                 <span class="inline-flex items-center gap-1.5 py-1 px-2 rounded-lg text-xs font-medium bg-gray-100 text-gray-800">
                                 {{$plan->category->name}}
@@ -126,14 +126,14 @@
                             </a>
                         </td>
                         <td class="size-px whitespace-nowrap">
-                            <a class="inline-flex items-center gap-1.5 py-1 px-2 rounded-lg text-xs font-medium bg-gray-100 text-gray-800" href="#">
+                            <a class="inline-flex items-center gap-1.5 py-1 px-2 rounded-lg text-xs font-medium bg-gray-100 text-gray-800">
                             <p>{{Carbon\Carbon::parse($plan->scheduledFinishDate)->format('d-m-Y')}}</p>
                             </a>
                         </td>
                         <td class="size-px whitespace-nowrap">
                         </td>
                         <td class="size-px whitespace-nowrap">
-                          <a class="block relative z-10" href="#">
+                          <a class="block relative z-10">
                             <div class="px-6 py-2">
                                 @if ($plan->status == 0)
                                   <span class="inline-flex items-center gap-1.5 py-1 px-2 rounded-lg text-xs font-medium bg-yellow-300 text-gray-800">
@@ -148,7 +148,7 @@
                             </a>
                         </td>
                         <td class="size-px whitespace-nowrap">
-                          <a class="block relative z-10" href="#">
+                          <a class="block relative z-10">
                           <div class="px-6 py-2">
                             @if ($plan->completed)
                             <span class="inline-flex items-center gap-1.5 py-1 px-2 rounded-lg text-xs font-medium bg-blue-300 text-gray-800">

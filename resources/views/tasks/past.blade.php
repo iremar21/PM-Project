@@ -96,7 +96,7 @@
                             </a>
                         </td>
                         <td class="size-px whitespace-nowrap">
-                            <a class="block relative z-10" href="#">
+                            <a class="block relative z-10">
                             <div class="px-6 py-2">
                                 <span class="inline-flex items-center gap-1.5 py-1 px-2 rounded-lg text-xs font-medium bg-gray-100 text-gray-800">
                                 {{$task->plan->category->name}}
@@ -105,7 +105,7 @@
                             </a>
                         </td>
                         <td class="size-px whitespace-nowrap">
-                            <a class="block relative z-10" href="#">
+                            <a class="block relative z-10">
                             <div class="px-6 py-2">
                                 <span class="inline-flex items-center gap-1.5 py-1 px-2 rounded-lg text-xs font-medium bg-gray-100 text-gray-800">
                                 {{Carbon\Carbon::parse($task->finishDate)->format('d-m-Y')}}

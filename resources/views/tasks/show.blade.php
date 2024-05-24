@@ -38,9 +38,9 @@
             <h2 class="text-3xl font-bold lg:text-5xl">{{$task->title}}</h2>
   
             <div class="flex items-center gap-x-5">
-              <a class="inline-flex items-center gap-1.5 py-1 px-3 sm:py-2 sm:px-4 rounded-full text-xs sm:text-sm bg-gray-100 text-gray-800 hover:bg-gray-200" href="#">
+              <p class="inline-flex items-center gap-1.5 py-1 px-3 sm:py-2 sm:px-4 rounded-full text-xs sm:text-sm bg-gray-100 text-gray-800" href="#">
                 {{$task->plan->category->name}}
-              </a>
+              </p>
               <p class="text-xs sm:text-sm text-gray-800">Creada por {{$task->creator->name}} el {{Carbon\Carbon::parse($task->created_at)->format('d-m-Y')}}</p>
             </div>
             <div>
