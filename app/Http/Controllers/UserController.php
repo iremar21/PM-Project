@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ProfileUpdateRequest;
+use App\Http\Requests\UserUpdateRequest;
 use App\Models\Role;
 use App\Models\User;
 use Exception;
@@ -32,7 +33,7 @@ class UserController extends Controller
 
     // Guarda la información actualizada del usuario
     // Utilizamos el ProfileUpdateRequest proporcionado por el paquete
-    public function update(ProfileUpdateRequest $request, User $user) {
+    public function update(UserUpdateRequest $request, User $user) {
 
         $user->name = $request->name;
         $user->email = $request->email;
