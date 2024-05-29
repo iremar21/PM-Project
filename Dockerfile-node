@@ -1,0 +1,17 @@
+# Usa la imagen oficial de Node.js
+FROM node:18
+
+# Establece el directorio de trabajo
+WORKDIR /var/www/html
+
+# Copia el código de la aplicación al contenedor
+COPY . .
+
+# Elimina package-lock.json y node_modules si existen
+RUN rm -rf package-lock.json node_modules
+
+# Instala las dependencias de Node.js
+RUN npm install
+
+# Ejecuta el script de build de Vite para producción
+RUN npm run build

@@ -1,0 +1,30 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: laravel_app
+    volumes:
+      - .:/var/www/html
+      - ./database/database.sqlite:/var/www/html/database/database.sqlite
+      - ./public:/var/www/html/public
+    ports:
+      - "8000:80"
+    environment:
+      - APP_ENV=local
+      - APP_DEBUG=true
+      - APP_KEY=${APP_KEY}
+    depends_on:
+      - node
+
+  node:
+    build:
+      context: .
+      dockerfile: Dockerfile-node
+    container_name: node_app
+    volumes:
+      - .:/var/www/html
+    working_dir: /var/www/html
+    command: ["sh", "-c", "npm install && npm run build"]
