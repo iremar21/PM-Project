@@ -26,7 +26,6 @@ class StoreTaskRequest extends FormRequest
             'description' => 'required|min:10',
             'assigned_user_id' => 'required',
             'scheduledFinishDate' => 'required|date|before_or_equal:' . $this->route('plan')->scheduledFinishDate,
-            'slug' => 'unique'
         ];
     }
 }

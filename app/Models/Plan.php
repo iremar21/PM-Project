@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
 class Plan extends Model
 {
@@ -46,5 +47,29 @@ class Plan extends Model
     public function getRouteKeyName()
     {
         return 'slug';
+    }
+
+    // Método boot para generar el slug automáticamente
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::creating(function ($plan) {
+            $plan->slug = self::createUniqueSlug($plan->title);
+        });
+
+        static::updating(function ($plan) {
+            if ($plan->isDirty('title')) {
+                $plan->slug = self::createUniqueSlug($plan->title);
+            }
+        });
+    }
+
+    private static function createUniqueSlug($title)
+    {
+        $slug = Str::slug($title);
+        $count = Plan::where('slug', 'LIKE', "{$slug}%")->count();
+
+        return $count ? "{$slug}-{$count}" : $slug;
     }
 }
